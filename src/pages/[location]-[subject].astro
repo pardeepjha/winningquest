@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('locations');
+  return pages.map((page) => ({
+    params: {
+      location: page.data.location.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      subject: page.data.subject.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+    },
+    props: { page }
+  }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+const waLink = 'https://wa.me/919971316698?text=Hi%20Winning%20Quest,%20I%20would%20like%20to%20know%20more%20about%20your%20classes.';
+const pageTitle = page.data.metaTitle ?? page.data.title;
+const pageDescription = page.data.metaDescription ?? page.data.description;
+const canonical = `https://winningquest.com/${Astro.params.location}-${Astro.params.subject}/`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} canonical={canonical}>
+  <main>
+    <section class="section-shell">
+      <article class="glass rounded-3xl p-6 shadow-glass sm:p-10">
+        <h1 class="text-3xl font-extrabold text-brand-deep sm:text-4xl">{page.data.hero}</h1>
+        <p class="mt-4 text-base text-slate-700">{page.data.description}</p>
+        <a href={waLink} class="track-wa-click mt-6 inline-flex rounded-full bg-brand px-6 py-3 font-semibold text-white">WhatsApp for Admission Help</a>
+      </article>
+    </section>
+
+    <section class="section-shell pt-0">
+      <article class="prose max-w-none rounded-3xl bg-white p-6 shadow-sm prose-headings:text-brand-deep prose-a:text-brand">
+        <Content />
+      </article>
+    </section>
+  </main>
+</BaseLayout>

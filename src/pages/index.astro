@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const waLink = 'https://wa.me/919971316698?text=Hi%20Winning%20Quest,%20I%20would%20like%20to%20know%20more%20about%20your%20classes.';
+
+const programs = [
+  '11th Commerce',
+  '12th Commerce',
+  'Accountancy Mastery',
+  'Economics for Boards + CUET',
+  'B.Com & M.Com Coaching',
+  'Junior Classes Foundation'
+];
+
+const testimonials = [
+  'The Accountancy classes at Winning Quest in Kharar helped me score 95% in my 12th boards with clear concepts and daily practice sheets.',
+  'I joined commerce coaching in Chaudhary Hari Singh Nagar and my Economics marks improved from 62 to 91 in one term.',
+  'Best commerce classes in Kharar for B.Com students. Personal mentoring and weekly doubt sessions are amazing.'
+];
+---
+
+<BaseLayout
+  title="Winning Quest | Premium Commerce Coaching in Kharar"
+  description="Winning Quest provides expert commerce coaching for 11th, 12th, B.Com, M.Com, Economics, Accountancy, and junior classes in Kharar."
+  canonical="https://winningquest.com/"
+>
+  <main>
+    <section class="section-shell pt-10">
+      <article class="glass rounded-3xl p-6 shadow-glass sm:p-10">
+        <p class="mb-4 inline-flex rounded-full bg-brand/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-brand">Kharar's Commerce Specialists</p>
+        <h1 class="text-3xl font-extrabold leading-tight text-brand-deep sm:text-5xl">Score Higher in Commerce with Expert Mentorship at Winning Quest</h1>
+        <p class="mt-4 max-w-2xl text-base leading-7 text-slate-700">Board-focused preparation, concept clarity, and result-driven strategy for 11th, 12th, B.Com, M.Com, Economics, Accountancy, and Junior Classes.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={waLink} class="track-wa-click rounded-full bg-brand px-6 py-3 font-semibold text-white shadow-glass">Get Free Counseling on WhatsApp</a>
+          <a href="#programs" class="rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-700">Explore Programs</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="programs" class="section-shell" aria-labelledby="programs-title">
+      <h2 id="programs-title" class="text-2xl font-bold text-brand-deep">Popular Programs</h2>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {programs.map((program) => (
+          <article class="rounded-2xl bg-white p-5 shadow-neo">
+            <h3 class="text-lg font-semibold">{program}</h3>
+            <p class="mt-2 text-sm text-slate-600">Personalized attention, weekly tests, doubt sessions, and exam-focused notes.</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="testimonials" class="section-shell" aria-labelledby="success-title">
+      <h2 id="success-title" class="text-2xl font-bold text-brand-deep">Success Stories from Kharar Students</h2>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        {testimonials.map((item) => (
+          <blockquote class="glass rounded-2xl p-5 text-sm leading-7 text-slate-700 shadow-neo">“{item}”</blockquote>
+        ))}
+      </div>
+    </section>
+
+    <section id="faq" class="section-shell" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="text-2xl font-bold text-brand-deep">Frequently Asked Questions</h2>
+      <div class="mt-5 space-y-3">
+        <details class="rounded-xl bg-white p-4 shadow-sm">
+          <summary class="cursor-pointer font-semibold">Do you provide classes for both boards and college students?</summary>
+          <p class="mt-3 text-sm text-slate-700">Yes. Winning Quest offers focused classes for 11th, 12th, B.Com, M.Com, and junior classes.</p>
+        </details>
+        <details class="rounded-xl bg-white p-4 shadow-sm">
+          <summary class="cursor-pointer font-semibold">How can I inquire about fees and batch timings?</summary>
+          <p class="mt-3 text-sm text-slate-700">Tap any WhatsApp button to connect directly and get complete details instantly.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

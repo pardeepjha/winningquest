@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = 'https://winningquest.com/'
+} = Astro.props;
+
+const nap = {
+  name: 'Winning Quest',
+  streetAddress: 'A1, B17, opp. Anaj Mandi Road, Chaudhary Hari Singh Nagar',
+  addressLocality: 'Kharar',
+  addressRegion: 'Punjab',
+  postalCode: '140301',
+  telephone: '+91-9971316698',
+  email: 'info@winningquest.com',
+  map: 'https://share.google/WOSsjwuFBuRJnsid7'
+};
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': canonical,
+  name: nap.name,
+  url: canonical,
+  telephone: nap.telephone,
+  email: nap.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: nap.streetAddress,
+    addressLocality: nap.addressLocality,
+    addressRegion: nap.addressRegion,
+    postalCode: nap.postalCode,
+    addressCountry: 'IN'
+  },
+  sameAs: [nap.map],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    telephone: nap.telephone
+  }
+};
+
+const eduSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  '@id': `${canonical}#edu`,
+  name: nap.name,
+  url: canonical,
+  telephone: nap.telephone,
+  email: nap.email,
+  address: localBusinessSchema.address,
+  hasMap: nap.map,
+  areaServed: ['Kharar', 'Sunny Enclave', 'Gillco', 'Sector 115 Kharar', 'Sector 125 Kharar'],
+  knowsAbout: ['Commerce Coaching', 'Accountancy Classes', 'Economics Classes', 'B.Com Tuition', 'M.Com Tuition']
+};
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(eduSchema)} />
