@@ -1,0 +1,32 @@
+---
+const waLink = 'https://wa.me/919971316698?text=Hi%20Winning%20Quest,%20I%20would%20like%20to%20know%20more%20about%20your%20classes.';
+---
+
+<header class="sticky top-0 z-40 border-b border-white/40 bg-white/70 backdrop-blur-xl">
+  <div class="section-shell flex items-center justify-between py-4">
+    <a href="/" class="text-lg font-bold text-brand-deep">Winning Quest</a>
+    <button id="menu-toggle" class="rounded-xl border border-slate-300 px-3 py-2 text-sm md:hidden" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    <nav class="hidden gap-6 text-sm font-medium md:flex" aria-label="Primary">
+      <a href="#programs" class="hover:text-brand">Programs</a>
+      <a href="#testimonials" class="hover:text-brand">Success Stories</a>
+      <a href="#faq" class="hover:text-brand">FAQs</a>
+      <a href={waLink} class="track-wa-click rounded-full bg-brand px-4 py-2 text-white shadow-glass">WhatsApp</a>
+    </nav>
+  </div>
+  <nav id="mobile-menu" class="section-shell hidden flex-col gap-3 pb-5 md:hidden" aria-label="Mobile Primary">
+    <a href="#programs">Programs</a>
+    <a href="#testimonials">Success Stories</a>
+    <a href="#faq">FAQs</a>
+    <a href={waLink} class="track-wa-click inline-flex w-max rounded-full bg-brand px-4 py-2 text-white">Chat on WhatsApp</a>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu?.classList.toggle('hidden');
+  });
+</script>
